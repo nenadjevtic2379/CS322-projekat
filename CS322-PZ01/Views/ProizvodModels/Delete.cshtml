@@ -1,0 +1,72 @@
+﻿@model CS322_PZ01.Models.ProizvodModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje</h2>
+
+<h3>Da li ste sigurni da želite da obrišete ovaj proizvod?</h3>
+<div>
+    <h4>Proizvodi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.auto.AutoNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auto.AutoNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kategorija.KategorijaNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kategorija.KategorijaNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizvodiModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizvodiModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumProizvodnje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumProizvodnje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slika)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obriši" class="btn btn-primary" /> |
+            @Html.ActionLink("Nazad na listu", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CS322_PZ01.Models.ProizvodModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Proizvodi</h2>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+}
+
+@using (Html.BeginForm("Index", "ProizvodModels", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group has-warning">
+                <label class="control-label" for="inputWarning">Pretraga</label>
+                <input type="text" class="form-control" id="search" name="search" placeholder="Unos">
+            </div>
+        </div>
+
+        <div class="col-md-1">
+
+            <button type="button" class="btn btn-primary" style="margin-top: 25px" onclick="location.href='@Url.Action("Index", "ProizvodModels")'">Cela lista</button>
+
+        </div>
+    </div>
+
+
+}
+
+
+
+<br />
+
+<table class="table table-striped table-hover">
+    <tr class="info">
+        <th>
+            @Html.DisplayNameFor(model => model.auto.AutoNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodiModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kategorija.KategorijaNaziv)
+        </th>
+        
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.auto.AutoNaziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProizvodiModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kategorija.KategorijaNaziv)
+            </td>
+            
+
+
+            <td>
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                  @Html.ActionLink("Uredi", "Edit", new { id = item.ProizvodiID }) <p style="display:inline">|</p> } 
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+                  @Html.ActionLink("Obriši", "Delete", new { id = item.ProizvodiID })    <p style="display:inline">|</p> }
+                
+                
+                @Html.ActionLink("Detaljnije", "Details", new { id = item.ProizvodiID }) |
+                @Html.ActionLink("Naruči", "Order", new { id = item.ProizvodiID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,59 @@
+﻿
+@model CS322_PZ01.Models.Komentari
+
+@{
+    ViewBag.Title = "Odgovor";
+}
+
+<h2>Odgovor</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Komentari</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div id="sakrij">
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.Editor("komentarID", new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.Editor("username", new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Dodajte vaš odgovor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("odgovor" ,new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Nazad na listu", "CommAndRes")
+</div>
+<script>
+    document.getElementById('sakrij').hidden = "true";
+</script>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CS322_PZ01.Models.NarudzbinaModel>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "MojeNarudzbine";
+}
+
+<h2>Moje narudžbine</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.auto.AutoNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kategorija.KategorijaNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodiModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (User.Identity.GetUserName().Equals(item.UserName) && item != null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.auto.AutoNaziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kategorija.KategorijaNaziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProizvodiModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cena)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datum)
+                </td>
+                @if (item.Status == 0)
+                {
+                    <td class="glyphicon glyphicon-question-sign"
+                        data-toggle="tooltip" data-placement="top" title="Narudžbina na čekanju!"></td>
+                }
+                @if (item.Status == 1)
+                {
+                    <td class="glyphicon glyphicon-ok-sign"
+                        data-toggle="tooltip" data-placement="top" title="Prihvaćena narudžbina!"></td>
+                }
+                @if (item.Status == -1)
+                {
+                    <td class="glyphicon glyphicon-minus-sign"
+                        data-toggle="tooltip" data-placement="top" title="Odbijena narudžbina!"></td>
+                }
+            </tr>
+        }
+      
+    }
+</table>

@@ -1,0 +1,64 @@
+﻿@model CS322_PZ01.Models.Forum
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Forum</h2>
+<h3>Diskutujte sa drugim korisnicima o kvalitetu naših proizvoda.</h3>
+
+<p>
+    @Html.ActionLink("Dodaj komentar", "Create")
+</p>
+
+
+    @foreach (var item in Model.komentari)
+    {
+
+        <blockquote class="blockquote" style="background-color:cadetblue">
+            <p>@Html.DisplayFor(modelItem => item.Tekst)</p>
+            <footer class="blockquote-footer">Poslao: <cite>@Html.DisplayFor(modelItem => item.UserName)</cite></footer>
+            <p class="text-right">@Html.ActionLink("Odgovor", "Odgovor", new { id = item.KomentarID})</p>
+        </blockquote>
+
+
+        {
+        <tr>
+           
+            <td>
+           @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+           {
+<p style="display:inline">Za komentar:</p>
+                @Html.ActionLink("Uredi", "Edit", new
+           {
+               id = item.KomentarID
+           }) <p style="display:inline">|</p>
+                @Html.ActionLink("Detaljnije", "Details", new { id = item.KomentarID }) <p style="display:inline">|</p>
+                @Html.ActionLink("Obriši", "Delete", new { id = item.KomentarID }) 
+
+
+           }
+
+            </td>
+        </tr>
+        }
+        foreach (var item2 in Model.odgovori)
+        {
+
+            if (item2.KomentarID.Equals(item.KomentarID))
+            {
+                <p class="text-primary">@Html.DisplayFor(modelItem => item2.UserName) : @Html.DisplayFor(modelItem => item2.Odgovor)</p>
+                if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                <p class="text-right">Za odgovor: @Html.ActionLink("Obriši", "ObrisiOdgovor", new { id = item2.OdgovorID })</p>
+                    }
+                }
+
+
+        }
+
+        <hr />
+    }
+

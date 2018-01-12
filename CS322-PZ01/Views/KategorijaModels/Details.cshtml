@@ -1,0 +1,26 @@
+﻿@model CS322_PZ01.Models.KategorijaModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Podaci</h2>
+
+<div>
+    <h4>Tipovi proizvoda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KategorijaNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategorijaNaziv)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.KategorijaID }) |
+    @Html.ActionLink("Nazad na listu", "Index")
+</p>

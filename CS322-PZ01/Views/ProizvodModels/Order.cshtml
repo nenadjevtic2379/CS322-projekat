@@ -1,0 +1,127 @@
+﻿@model CS322_PZ01.Models.ProizvodModel
+    @using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Narudžbina";
+}
+
+<h2>Narudžbina</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Poštovani <span>@User.Identity.GetUserName()</span>, da li ste sigurni da želite da naručite sledeći proizvod?</h4>
+        <hr />
+       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProizvodiID)
+
+
+
+
+        <div class="form-group">
+            @Html.Label("Proizvod", htmlAttributes: new { @class = "control-label col-md-2", @Value = ViewBag.kategorija })
+            <div class="col-md-10">
+                @Html.Display("kategorija", new { htmlAttributes = new { @readonly = "readonly" } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Auto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Display("auto", new { htmlAttributes = new { @readonly = "readonly" } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Model auta", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Display("model", new{  @readonly = "readonly"  })
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Cena", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Display("price", new { @readonly = "readonly" })
+                
+            </div>
+        </div>
+
+        <div id="sakrij">
+
+            <div class="form-group">
+               
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ProizvodiModel, new { @class = "hidden" })
+                    @Html.ValidationMessageFor(model => model.ProizvodiModel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+               
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Cena, new { @class = "hidden" })
+                    @Html.ValidationMessageFor(model => model.Cena, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.Hidden("username")
+
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.Hidden("datum")
+
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.Hidden("status")
+
+                </div>
+            </div>
+            <div class="form-group">
+               
+                <div class="col-md-10">
+                    @Html.DropDownList("KategorijaID", null, htmlAttributes: new {  @class = "hidden" })
+                    @Html.ValidationMessageFor(model => model.KategorijaID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+               
+                <div class="col-md-10">
+                    @Html.DropDownList("AutoID", null, htmlAttributes: new { @class = "hidden" })
+                    @Html.ValidationMessageFor(model => model.AutoID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Potvrdi" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Nazad na listu", "Index")
+</div>
+<script>
+    document.getElementById('sakrij').hidden = "true";
+
+</script>

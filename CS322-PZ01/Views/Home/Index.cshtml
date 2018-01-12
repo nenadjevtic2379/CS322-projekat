@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Shone Shop</h1>
+    <p class="lead">Svi delovi za vaš automobil na jednom mestu. Dobrodošli u najveću bazu auto delova u Srbiji!</p>
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Register", "Account")'">Registracija &raquo;</button>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <img src="http://blog.exitbee.com/wp-content/uploads/2016/03/about-us.jpg" style="width:100%; height: 170px"  />
+        <h2>O nama</h2>
+        <p>
+            Saznajte sve o našoj pouzdanosti kao i načinu rada naše službe.
+        </p>
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("About", "Home")'">Saznajte više &raquo;</button>
+    </div>
+    <div class="col-md-4">
+        <img src="https://media.istockphoto.com/photos/modern-keyboard-wih-contact-us-button-picture-id617893290?k=6&m=617893290&s=612x612&w=0&h=BpYyged4g5l7zoQge0jiHD3IfW0108X7wiRVai7COK0=" style="width:100%; height:170px" />
+        <h2>Kontaktirajte nas</h2>
+        <p>Stupite u kontakt sa našim timom i recite sve vaše probleme i sugestije.</p>
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Contact", "Home")'">Saznajte više &raquo;</button>
+    </div>
+    <div class="col-md-4">
+        <img src="http://www.rigel-marine.in/img/join-us.jpg" style="width:100%; height:170px" />
+        <h2>Diskutujte</h2>
+        <p>Pridružite nam se na forumu i diskutujte sa drugim članovima o aktuelnim temama.</p>
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("CommAndRes", "Komentaris")'">Saznajte više &raquo;</button>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿@model CS322_PZ01.Models.ProizvodModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Podaci</h2>
+
+<div>
+    <h4>Proizvodi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.auto.AutoNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auto.AutoNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kategorija.KategorijaNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kategorija.KategorijaNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizvodiModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizvodiModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumProizvodnje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumProizvodnje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slika)
+        </dt>
+
+        <dd>
+
+
+
+            @if (Model.Slika != null)
+            {
+
+                var base64 = Convert.ToBase64String(Model.Slika);
+
+                var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                <img src='@imgsrc' />
+            }
+
+            else
+            {
+               <p>/</p> 
+            }
+
+
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.ProizvodiID }) |
+    @Html.ActionLink("Nazad na listu", "Index")
+</p>

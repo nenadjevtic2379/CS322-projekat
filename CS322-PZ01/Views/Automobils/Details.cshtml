@@ -1,0 +1,26 @@
+﻿@model CS322_PZ01.Models.Automobil
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Podaci</h2>
+
+<div>
+    <h4>Automobili</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutoNaziv)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.AutoID }) |
+    @Html.ActionLink("Nazad na listu", "Index")
+</p>

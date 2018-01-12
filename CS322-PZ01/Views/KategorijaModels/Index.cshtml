@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CS322_PZ01.Models.KategorijaModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tipovi proizvoda</h2>
+
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+<table class="table table-striped table-hover">
+    <tr class="info">
+        <th>
+            @Html.DisplayNameFor(model => model.KategorijaNaziv)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategorijaNaziv)
+        </td>
+        <td>
+            @Html.ActionLink("Uredi", "Edit", new { id=item.KategorijaID }) |
+            @Html.ActionLink("Detaljnije", "Details", new { id=item.KategorijaID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.KategorijaID })
+        </td>
+    </tr>
+}
+
+</table>
